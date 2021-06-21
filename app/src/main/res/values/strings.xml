@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Application Jail</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="splash_title">Тест на зека</string>
+    <string name="splash">Тест на зека \n (Прописка в камере</string>
+    <string name="splash_title_2">(Прописка в камере)</string>
+    <string name="description">От сумы и от тюрьмы не зарекайся — жизнь — непредсказуемая штука. Готовым нужно быть ко всему: к бедности (суме), несправедливости (тюрьме) и всегда следует ожидать (не зарекаться), что вслед за удачей, довольством, славой может случиться несчастье, прийти беда</string>
+    <string name="startTest">Шагнуть в хату</string>
+</resources>
