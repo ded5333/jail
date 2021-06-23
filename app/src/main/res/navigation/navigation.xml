@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.ded.android.myapplicationjail.SplashFragment"
+        android:name="com.ded.android.myapplicationjail.ui.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -16,25 +16,25 @@
     </fragment>
     <fragment
         android:id="@+id/descriptionFragment"
-        android:name="com.ded.android.myapplicationjail.DescriptionFragment"
+        android:name="com.ded.android.myapplicationjail.ui.description.DescriptionFragment"
         android:label="fragment_description"
         tools:layout="@layout/fragment_description" >
         <action
-            android:id="@+id/action_descriptionFragment_to_testFragment"
+            android:id="@+id/action_descriptionFragment_to_questionFragment"
             app:destination="@id/testFragment" />
     </fragment>
     <fragment
         android:id="@+id/testFragment"
-        android:name="com.ded.android.myapplicationjail.TestFragment"
+        android:name="com.ded.android.myapplicationjail.ui.question.view.QuestionFragment"
         android:label="fragment_test"
-        tools:layout="@layout/fragment_test" >
+        tools:layout="@layout/fragment_question" >
         <action
-            android:id="@+id/action_testFragment_to_resultFragment"
+            android:id="@+id/action_questionFragment_to_resultFragment"
             app:destination="@id/resultFragment" />
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
-        android:name="com.ded.android.myapplicationjail.ResultFragment"
+        android:name="com.ded.android.myapplicationjail.ui.result.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.ded.android.myapplicationjail;
+package com.ded.android.myapplicationjail.ui.splash;
 
 import android.os.Bundle;
 
@@ -10,6 +10,8 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ded.android.myapplicationjail.R;
 
 
 public class SplashFragment extends Fragment {

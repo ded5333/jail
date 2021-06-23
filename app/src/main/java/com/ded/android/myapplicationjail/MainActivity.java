@@ -11,13 +11,13 @@ public class MainActivity extends AppCompatActivity {
   NavController navController;
 
 
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    navController = Navigation.findNavController(this, R.id.navigation);
-
+    navController = Navigation.findNavController(this, R.id.navContainer);
 
   }
 }
