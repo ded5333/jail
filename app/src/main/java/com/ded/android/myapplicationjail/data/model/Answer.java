@@ -12,4 +12,8 @@ public class Answer {
   public int getNextQuestionId() {
     return nextQuestionId;
   }
+
+  public String getTextAnswer() {
+    return textAnswer;
+  }
 }
