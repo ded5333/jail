@@ -3,10 +3,12 @@ package com.ded.android.myapplicationjail.data.model;
 public class Answer {
   private String textAnswer;
   private int nextQuestionId;
+  private int category;
 
-  public Answer(String textAnswer, Question nextQuestion) {
+  public Answer(String textAnswer, Question nextQuestion,int category) {
     this.textAnswer = textAnswer;
     this.nextQuestionId = nextQuestion.getId();
+    this.category = category;
   }
 
   public int getNextQuestionId() {
@@ -15,5 +17,9 @@ public class Answer {
 
   public String getTextAnswer() {
     return textAnswer;
+  }
+
+  public int getCategory() {
+    return category;
   }
 }

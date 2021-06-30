@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.ded.android.myapplicationjail.R;
 import com.ded.android.myapplicationjail.data.model.Answer;
 import com.ded.android.myapplicationjail.data.model.Question;
+import com.ded.android.myapplicationjail.data.model.ReactionToAnswer;
 import com.ded.android.myapplicationjail.ui.question.presetner.QuestingPresenter;
 import com.ded.android.myapplicationjail.ui.question.presetner.QuestingPresenterImpl;
 
@@ -70,6 +71,7 @@ public class QuestionFragment extends Fragment implements QuestionFragmentView {
     }
 
     tvQuestion.setText(currentQuestion.getQuestionText());
+    // Log.d("TAG", "getOnClickDoSomething: " + currentQuestion.getReaction());
 
 
   }
@@ -99,18 +101,22 @@ public class QuestionFragment extends Fragment implements QuestionFragmentView {
     return v -> {
       // Log.d("TAG", "onClick: " + currentQuestion.getAnswers()[v.getId()].toString());
       //Answer answer = currentQuestion.getAnswers()[v.getId()];
-     // Log.d("TAG", "onClick: " + answer.getNextQuestionId());
+      // Log.d("TAG", "onClick: " + answer.getNextQuestionId());
       //answer.getNextQuestionId();
       //Log.d("TAG", "onClick: " + v.getId());
-     // Log.d("TAG", " answer.getNextQuestionId(): " +  answer.getNextQuestionId());
+      // Log.d("TAG", " answer.getNextQuestionId(): " +  answer.getNextQuestionId());
       llAnswers.removeAllViews();
       int answerId = v.getId();
 
       currentQuestion = questingPresenter.loadNextQuestionByAnswerId(answerId);
 
-      tvQuestion.setText(currentQuestion.getQuestionText());
+
+      ReactionToAnswer reaction = currentQuestion.getReaction()[answerId];
+      tvQuestion.setText(reaction.getReaction() +  currentQuestion.getQuestionText());
 
       showAnswers(currentQuestion);
+
+      Log.d("TAG", "getOnClickDoSomething: " + reaction.getReaction());
 
 
     };

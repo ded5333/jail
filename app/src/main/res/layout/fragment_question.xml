@@ -8,6 +8,7 @@
     tools:context=".ui.question.view.QuestionFragment">
 
 
+
     <TextView
         android:id="@+id/tvName"
         android:layout_width="match_parent"

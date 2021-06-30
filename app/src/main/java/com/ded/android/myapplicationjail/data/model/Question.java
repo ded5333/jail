@@ -6,6 +6,7 @@ public class Question {
   private String questionText;
   private int id;
   private Answer[] answers;
+  private ReactionToAnswer [] reaction;
 
   private Question() {
   }
@@ -21,6 +22,11 @@ public class Question {
     return this;
   }
 
+  public Question setReaction(ReactionToAnswer... reaction) {
+    this.reaction = reaction;
+    return this;
+  }
+
   public String getQuestionText() {
     return questionText;
   }
@@ -31,5 +37,9 @@ public class Question {
 
   public Answer[] getAnswers() {
     return answers;
+  }
+
+  public ReactionToAnswer[] getReaction() {
+    return reaction;
   }
 }
