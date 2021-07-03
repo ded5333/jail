@@ -7,4 +7,5 @@ public interface QuestingPresenter {
   Question loadNextQuestionByAnswerId(int answerId);
 
   boolean isFirstQuestion();
+
 }

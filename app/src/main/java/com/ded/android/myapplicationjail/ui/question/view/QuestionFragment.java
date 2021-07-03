@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,8 +21,7 @@ import com.ded.android.myapplicationjail.data.model.Question;
 import com.ded.android.myapplicationjail.data.model.ReactionToAnswer;
 import com.ded.android.myapplicationjail.ui.question.presetner.QuestingPresenter;
 import com.ded.android.myapplicationjail.ui.question.presetner.QuestingPresenterImpl;
-
-import java.util.ArrayList;
+import com.google.android.material.button.MaterialButton;
 
 import static com.ded.android.myapplicationjail.data.Examination.FIRST_QUESTION;
 
@@ -59,7 +59,7 @@ public class QuestionFragment extends Fragment implements QuestionFragmentView {
 
     llAnswers = view.findViewById(R.id.llAnswers);
 
-    tvQuestion = view.findViewById(R.id.tvName);
+    tvQuestion = view.findViewById(R.id.tvQuestion);
 
 
     if (questingPresenter.isFirstQuestion()) {
@@ -80,9 +80,10 @@ public class QuestionFragment extends Fragment implements QuestionFragmentView {
 
     for (int i = 0; i < currentQuestion.getAnswers().length; i++) {
       Answer answer = currentQuestion.getAnswers()[i];
-      btnNewAnswer = new Button(requireContext());
+      btnNewAnswer = new MaterialButton(requireContext());
       btnNewAnswer.setText(answer.getTextAnswer());
       btnNewAnswer.setId(i);
+
 
       Log.d("TAG", "showAnswers: " + answer.getTextAnswer());
       Log.d("TAG", "showAnswers: " + btnNewAnswer.getId());
@@ -99,27 +100,31 @@ public class QuestionFragment extends Fragment implements QuestionFragmentView {
 
   View.OnClickListener getOnClickDoSomething(final int id) {
     return v -> {
-      // Log.d("TAG", "onClick: " + currentQuestion.getAnswers()[v.getId()].toString());
-      //Answer answer = currentQuestion.getAnswers()[v.getId()];
-      // Log.d("TAG", "onClick: " + answer.getNextQuestionId());
-      //answer.getNextQuestionId();
-      //Log.d("TAG", "onClick: " + v.getId());
-      // Log.d("TAG", " answer.getNextQuestionId(): " +  answer.getNextQuestionId());
       llAnswers.removeAllViews();
       int answerId = v.getId();
 
-      currentQuestion = questingPresenter.loadNextQuestionByAnswerId(answerId);
-
-
-      ReactionToAnswer reaction = currentQuestion.getReaction()[answerId];
-      tvQuestion.setText(reaction.getReaction() +  currentQuestion.getQuestionText());
-
-      showAnswers(currentQuestion);
-
-      Log.d("TAG", "getOnClickDoSomething: " + reaction.getReaction());
-
+      if (currentQuestion.getId() < 30) {
+        loadAndShowQuestion(answerId);
+      }
+      else if (currentQuestion.getId() >= 30) {
+        Navigation.findNavController(requireView()).navigate(R.id.action_questionFragment_to_resultFragment);
+      }
 
     };
+
+
+  }
+
+  void loadAndShowQuestion(int answerId) {
+    currentQuestion = questingPresenter.loadNextQuestionByAnswerId(answerId);
+
+    ReactionToAnswer reaction = currentQuestion.getReaction()[answerId];
+    tvQuestion.setText(reaction.getReaction() + currentQuestion.getQuestionText());
+
+    showAnswers(currentQuestion);
+    Log.d("TAG", "getOnClickDoSomething: " + reaction.getReaction());
+
+
   }
 
 

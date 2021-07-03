@@ -20,4 +20,8 @@ public class MainActivity extends AppCompatActivity {
     navController = Navigation.findNavController(this, R.id.navContainer);
 
   }
+ public void finishApp(){
+    finish();
+    System.exit(0);
+  }
 }

@@ -1,10 +1,15 @@
 package com.ded.android.myapplicationjail.data;
 
+import android.util.Log;
+
+import com.ded.android.myapplicationjail.R;
 import com.ded.android.myapplicationjail.data.model.Answer;
 import com.ded.android.myapplicationjail.data.model.Question;
 import com.ded.android.myapplicationjail.data.model.ReactionToAnswer;
+import com.ded.android.myapplicationjail.data.model.Result;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 
 public class Examination {
@@ -16,12 +21,15 @@ public class Examination {
   public final int ANSWER_CATEGORY_THIEVES = 4;
   public final int ANSWER_CATEGORY_SHESTERKA = 5;
   public final int ANSWER_CATEGORY_STUKACH = 6;
+  Result result;
 
   private static Examination instance = null;
   private boolean isFirstQuestion = true;
   private Question currentQuestion;
+  Question question1;
   private LinkedHashMap<Integer, Question> examinationQuestions = new LinkedHashMap<>();
   private ArrayList<Integer> categoryArray = new ArrayList<>();
+  private ArrayList<Result> results = new ArrayList<>();
 
   public static Examination getInstance() {
     if (instance == null) {
@@ -33,8 +41,7 @@ public class Examination {
 
   public Examination() {
 
-
-    Question question1 = new Question("Вы заходите в хату, на вас с интересом смотрят заключенные, вы: ");
+     question1 = new Question("Вы заходите в хату, на вас с интересом смотрят заключенные, вы: ");
     addQuestion(question1);
     Question question2 = new Question("Рассказывай за что загремел?");
     addQuestion(question2);
@@ -75,7 +82,7 @@ public class Examination {
     addQuestion(question15a);
     Question question16 = new Question("Шары вкатывать будешь?");
     addQuestion(question16);
-    Question question17 = new Question("лучше сразу признайся ты не пидераст, а то все равно узнаем рано или поздно");
+    Question question17 = new Question("Лучше сразу признайся ты не пидераст, а то все равно узнаем рано или поздно");
     addQuestion(question17);
     Question question18 = new Question("А доказывать будешь? В тазик сядешь?");
     addQuestion(question18);
@@ -85,9 +92,9 @@ public class Examination {
     addQuestion(question20);
     Question question21 = new Question("Вы получили передачу и к вам подходит смотрящий и просит уделить на общее, ваши действия: ");
     addQuestion(question21);
-    Question question22 = new Question("Вы обнаружили что пропала шоколадка");
+    Question question22 = new Question("Вы обнаружили что пропала шоколадка: ");
     addQuestion(question22);
-    Question question23 = new Question("вам становиться известно что сокамерники планируют побег, вы:");
+    Question question23 = new Question("Вам становиться известно что сокамерники планируют побег, вы:");
     addQuestion(question23);
     Question question24 = new Question("Сокамернику принесли телефон, вы:");
     addQuestion(question24);
@@ -180,7 +187,7 @@ public class Examination {
         new Answer("Была", question14, ANSWER_CATEGORY_MAN),
         new Answer("Нету", question14, ANSWER_CATEGORY_MAN));
     question14.setAnswers(new Answer("Да хорошо, конечно лизал, кто ж не лизал", question15, ANSWER_CATEGORY_BAD),
-        new Answer("Да хорошо было, но мохнатую к сожалению не лизал", question15, ANSWER_CATEGORY_MAN),
+        new Answer("Да хорошо было, но мохнатуку к сожалению не лизал", question15, ANSWER_CATEGORY_MAN),
         new Answer("Моя личная жизнь это моя личная жизнь", question15, ANSWER_CATEGORY_MAN),
         new Answer("Я же сказал что нету девушки", question15, ANSWER_CATEGORY_MAN),
         new Answer("Ну так, было разок", question15, ANSWER_CATEGORY_BAD));
@@ -207,14 +214,14 @@ public class Examination {
     question20.setAnswers(new Answer("Дадите пачку", question21, ANSWER_CATEGORY_MAN),
         new Answer("Откажите", question21, ANSWER_CATEGORY_BAD));
     question21.setAnswers(new Answer("Откажете", question22, ANSWER_CATEGORY_BAD),
-        new Answer("Отдадите все на нужды арестантам", question22, ANSWER_CATEGORY_BAD),
+        new Answer("Отдадите все на нужды арестантам", question22, ANSWER_CATEGORY_SHESTERKA),
         new Answer("Отдадите половину на нужды арестантам", question22, ANSWER_CATEGORY_MAN),
         new Answer("Дадите 15-20% на нужды арестантам", question22, ANSWER_CATEGORY_MAN));
     question22.setAnswers(new Answer("Вы нажалуетесь смотрящему", question23, ANSWER_CATEGORY_SHESTERKA),
         new Answer("Нажалуетесь администрации", question23, ANSWER_CATEGORY_STUKACH),
         new Answer("Попросите сокамерников сделать братский шмон", question23, ANSWER_CATEGORY_MAN),
         new Answer("При всех сообщите о пропаже шоколадки , имеючи риск быть жлобом что сами съели и забыли ", question23, ANSWER_CATEGORY_MAN));
-    question23.setAnswers(new Answer("Скажите Администрации", question24, ANSWER_CATEGORY_STUKACH),
+    question23.setAnswers(new Answer("Скажите администрации", question24, ANSWER_CATEGORY_STUKACH),
         new Answer("Попроситесь с ними", question24, ANSWER_CATEGORY_SHESTERKA),
         new Answer("Будете молчать", question24, ANSWER_CATEGORY_MAN));
     question24.setAnswers(new Answer("Попросите позвонить", question25, ANSWER_CATEGORY_BAD),
@@ -222,16 +229,19 @@ public class Examination {
         new Answer("Будете ждать пока преложить позвонить", question25, ANSWER_CATEGORY_BAD));
     question25.setAnswers(new Answer("Откажетесь ", question26, ANSWER_CATEGORY_MAN),
         new Answer("Согласитесь", question26, ANSWER_CATEGORY_BAD));
-    question26.setAnswers(new Answer("Согласитесь", question26, ANSWER_CATEGORY_BAD),
+    question26.setAnswers(new Answer("Согласитесь", question26, ANSWER_CATEGORY_SHESTERKA),
         new Answer("Откажете", question26, ANSWER_CATEGORY_BAD),
         new Answer("Поинтересуетесь о графике дежурств", question26, ANSWER_CATEGORY_MAN),
+        new Answer("В камере должны убираться обиженые", question26, ANSWER_CATEGORY_THIEVES),
         new Answer("Дадите леща тому кто попросил помыть пол", question26, ANSWER_CATEGORY_BAD)
     );
     question1.setReaction(new ReactionToAnswer("реакция на первый ответ 0 вопроса"),
         new ReactionToAnswer("реакция на 2 ответ 1 вопроса"),
         new ReactionToAnswer("реакция на 2 ответ 1 вопроса"),
+        new ReactionToAnswer("реакция на 2 ответ 1 вопроса"),
+        new ReactionToAnswer("реакция на 2 ответ 1 вопроса"),
         new ReactionToAnswer("реакция на 2 ответ 1 вопроса")
-        );
+    );
 
     question2.setReaction(new ReactionToAnswer("Здарова! "),
         new ReactionToAnswer("Здарова! "),
@@ -241,54 +251,162 @@ public class Examination {
         new ReactionToAnswer("Здарова! ")
 
     );
-    question3.setReaction(new ReactionToAnswer("Ясно. "),
+    question2a.setReaction(new ReactionToAnswer("Бывает! "),
+        new ReactionToAnswer("Тогда твое местро у параши! "),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("")
+    );
+    question3.setReaction(new ReactionToAnswer("Бывает! "),
+        new ReactionToAnswer("Понятно. "),
+        new ReactionToAnswer("А что поделать. "),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("Красава. "),
+        new ReactionToAnswer("Понятно. ")
+    );
+    question4.setReaction(new ReactionToAnswer("Бывает! "),
+        new ReactionToAnswer("Выдержал, крепкий. "),
+        new ReactionToAnswer("Да, не приятно! "),
+        new ReactionToAnswer("Повезло так повезло! "),
+        new ReactionToAnswer("Кум поганый! ")
+    );
+    question4a.setReaction(new ReactionToAnswer("Ясно. "),
+        new ReactionToAnswer("Понятно. "),
+        new ReactionToAnswer("Понятно. "),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("Красава. "),
+        new ReactionToAnswer("Понятно. ")
+    );
+    question4b.setReaction(new ReactionToAnswer("Ну падай на койку! "),
         new ReactionToAnswer("Красава, наш пацан. "),
         new ReactionToAnswer("Понятно. "),
         new ReactionToAnswer(""),
         new ReactionToAnswer("Красава. "),
         new ReactionToAnswer("Понятно. ")
     );
-    question2a.setReaction(new ReactionToAnswer("Бывает! "),
+    question5.setReaction(new ReactionToAnswer("Ну падай на койку! "),
+        new ReactionToAnswer("Красава, наш пацан. "),
+        new ReactionToAnswer("Понятно. "),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("Красава. "),
+        new ReactionToAnswer("Ну падай на койку! ")
+    );
+    question6.setReaction(new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
         new ReactionToAnswer(""),
         new ReactionToAnswer(""),
         new ReactionToAnswer("")
     );
-    question4.setReaction(new ReactionToAnswer("Ясно. "),
-        new ReactionToAnswer("Ясно. "),
-        new ReactionToAnswer("Понятно. "),
-        new ReactionToAnswer("Понятно. "),
-        new ReactionToAnswer("Повезло! "),
-        new ReactionToAnswer("Кум поганый! ")
+    question7.setReaction(new ReactionToAnswer("На просто так не играй, потом могут натурой забрать. "),
+        new ReactionToAnswer("Не, у нас правильная хата, мы с первоходами не играем на интерес! "),
+        new ReactionToAnswer("Не, без интереса нам не интересно. "),
+        new ReactionToAnswer("Ну в общем на просто так и на интерес лучше не играй. ")
     );
-    question5.setReaction(new ReactionToAnswer("Ясно. "),
-        new ReactionToAnswer("Красава, наш пацан. "),
-        new ReactionToAnswer("Понятно. "),
+    question8.setReaction(new ReactionToAnswer(""),
         new ReactionToAnswer(""),
-        new ReactionToAnswer("Красава. "),
-        new ReactionToAnswer("Кум поганый! ")
-    );
-    question6.setReaction(new ReactionToAnswer("Ясно. "),
-        new ReactionToAnswer("Красава, наш пацан. "),
-        new ReactionToAnswer("Понятно. "),
-        new ReactionToAnswer(""),
-        new ReactionToAnswer("Красава. "),
-        new ReactionToAnswer("Понятно. ")
-    );
-    question7.setReaction(new ReactionToAnswer("Ясно. "),
-        new ReactionToAnswer("Красава, наш пацан. "),
-        new ReactionToAnswer("Понятно. "),
-        new ReactionToAnswer(""),
-        new ReactionToAnswer("Красава. "),
-        new ReactionToAnswer("Понятно. ")
-    );
-    question8.setReaction(new ReactionToAnswer("Ясно. "),
-        new ReactionToAnswer("Красава, наш пацан. "),
-        new ReactionToAnswer("Понятно. "),
-        new ReactionToAnswer(""),
-        new ReactionToAnswer("Красава. "),
-        new ReactionToAnswer("Понятно. ")
-    );
+        new ReactionToAnswer("Во, дело говоришь! "),
+        new ReactionToAnswer("Во, дело говоришь! "),
+        new ReactionToAnswer("Во, дело говоришь! ")
 
+    );
+    question9.setReaction(new ReactionToAnswer("Много ароматизаторов, ну пойдет. "),
+        new ReactionToAnswer("Много ароматизаторов, ну пойдет. "),
+        new ReactionToAnswer("Ты б еще фруктовый взял. "),
+        new ReactionToAnswer("О, нормальный чаек. "),
+        new ReactionToAnswer("Много ароматизаторов, ну пойдет. ")
+    );
+    question10.setReaction(new ReactionToAnswer("Красава! "),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("Мы же не чай просим, а чифирь! "),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("")
+    );
+    question11.setReaction(new ReactionToAnswer("А ты все чай завариваешь. "),
+        new ReactionToAnswer("Красава. "),
+        new ReactionToAnswer("Забыл сказать чтобы не перемешивал. "),
+        new ReactionToAnswer("Ничего себе подорваный чифирь получился, красава! "),
+        new ReactionToAnswer("А ты все чай завариваешь. ")
+    );
+    question12.setReaction(new ReactionToAnswer("Ясно. "),
+        new ReactionToAnswer("Красава, наш пацан. "),
+        new ReactionToAnswer("Да ты я вижу правила камеры знаешь, в блотные метишь? "),
+        new ReactionToAnswer("")
+
+    );
+    question13.setReaction(new ReactionToAnswer("Нельзя так разговаривать здесь. "),
+        new ReactionToAnswer("Ахахах, у нас здесь вилок нету. "),
+        new ReactionToAnswer("Ну все понятно с тобой. "),
+        new ReactionToAnswer("Да ты шутник, ты по аккуратней со словами. ")
+    );
+    question14.setReaction(new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("")
+    );
+    question15.setReaction(new ReactionToAnswer("А потом собственный хер целовал? "),
+        new ReactionToAnswer("Правильно, нечего потом собственный хер целовать. "),
+        new ReactionToAnswer("Да все, все, мы поняли.  "),
+        new ReactionToAnswer("Да все, все, мы поняли. "),
+        new ReactionToAnswer("А потом собственный хер целовал? ")
+    );
+    question15a.setReaction(new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("")
+    );
+    question16.setReaction(new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("")
+    );
+    question17.setReaction(new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("Для лучших ощущений при сексуальных утехах. ")
+    );
+    question18.setReaction(new ReactionToAnswer("Тебе сдесь будет не просто. "),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("Тебе сдесь будет не просто. ")
+    );
+    question19.setReaction(new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("")
+    );
+    question20.setReaction(new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("")
+    );
+    question21.setReaction(new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("")
+    );
+    question22.setReaction(new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("")
+    );
+    question23.setReaction(new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("")
+    );
+    question24.setReaction(new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("")
+    );
+    question25.setReaction(new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("")
+    );
+    question26.setReaction(new ReactionToAnswer(""),
+        new ReactionToAnswer(""),
+        new ReactionToAnswer("")
+    );
 
     currentQuestion = question1;
 
@@ -296,14 +414,35 @@ public class Examination {
 //    Log.d("TAG", "Examination: " + answer.getTextAnswer());
 
 
+    Result instantlyCock = new Result("Опущенный", "Стоят ниже всех остальных заключённых в неофициальной тюремной иерархии, пассивного гомосексуала, с которым насильственно совершён гомосексуальный половой контакт, обычно за грубые нарушения норм арестантской этики. У «опущенных» нет никаких прав, есть только обязанности и запреты ");
+    results.add(instantlyCock);
+    Result cock = new Result("Обиженый", "В основном, в «обиженые» попадают за грубейшие нарушения тюремного закона, например, за стукачество, за крысятничество (воровство у своих), за беспредел, неуплату карточного долга. ");
+    results.add(cock);
+    Result man = new Result("Мужик", "Мужики ни на какую власть в зоне не претендуют, за ними нету косяков, никому не прислуживают, с администрацией не сотрудничают. Вмешиваться в дела блатных они не могут. Права голоса на их «разборках» мужики не имеют.");
+    results.add(man);
+    Result thieves = new Result("Блатной", "Стать блатным может не каждый заключенный. Блатные - это реальная власть на некоторых зонах, власть, которая борется с властью официальной, то есть с администрацией зоны. «Блатные» имеют право распоряжаться «общаком» — выделять деньги на взятки или на «грев». ");
+    results.add(thieves);
+    Result categoryShesterka = new Result("Шестерка", "Прислуга. В шестёрки попадают слишком слабые или услужливые люди. И в тюрьмах, и в лагерях излишняя услужливость не в чести. В тюрьме принято обслуживать себя самостоятельно.");
+    results.add(categoryShesterka);
+    Result categoryStukach = new Result("Стукач", "Тайно содействующие с администрацией и докладывающие на соседей по камере, те, кто не вкладывается в «общак»");
+    results.add(categoryStukach);
+
+    instantlyCock.setNickname(new String[]{"Гребень","Вафлер","Голубка","Чмо","Помойный"});
+    cock.setNickname(new String[]{"Гребень","Вафлер","Чмырь","Чмо","Помойный"});
+    man.setNickname(new String[]{"Балдох","Кепкий","Резкий","Мужик","Храбрец"});
+    thieves.setNickname(new String[]{"Храмой","Косой","Кувалда","Духарь","Кремень"});
+    categoryShesterka.setNickname(new String[]{"Вася","Шоха","Бесполезный","Полезный"});
+    categoryStukach.setNickname(new String[]{"Гребень","Вафлер","Грязный","Левый","Дырявый","Трепло"});
+
+
   }
 
   public Question setCurrentQuestionByAnswerId(int answerNum) {
+
     Answer answer = currentQuestion.getAnswers()[answerNum];
     ReactionToAnswer reaction = currentQuestion.getReaction()[answerNum];
     int category = answer.getCategory();
     categoryArray.add(category);
-
 
     // Log.d("TAG", "setCurrentQuestionByAnswerId: " + reaction.toString());
     int nextQuestionId = answer.getNextQuestionId();
@@ -311,6 +450,53 @@ public class Examination {
     isFirstQuestion = false;
     return currentQuestion;
   }
+
+  public Result loadResult() {
+    int instantlyCock = Collections.frequency(categoryArray, ANSWER_CATEGORY_INSTANTLY_COCK);
+    int categoryBad = Collections.frequency(categoryArray, ANSWER_CATEGORY_BAD);
+    int categoryMan = Collections.frequency(categoryArray, ANSWER_CATEGORY_MAN);
+    int categoryThieves = Collections.frequency(categoryArray, ANSWER_CATEGORY_THIEVES);
+    int categoryShesterka = Collections.frequency(categoryArray, ANSWER_CATEGORY_SHESTERKA);
+    int categoryStukach = Collections.frequency(categoryArray, ANSWER_CATEGORY_STUKACH);
+
+
+
+    resetTest();
+
+    if (instantlyCock > 0) {
+      result = results.get(0);
+    }
+    else if (categoryBad > 1) {
+
+      if (categoryStukach > 1) {
+        result = results.get(5);
+
+      }
+      result = results.get(1);
+
+
+    }
+    else if (categoryShesterka > 1) {
+      result = results.get(4);
+
+    }
+    else if (categoryThieves == 7 && categoryBad < 1 ) {
+      result = results.get(3);
+
+    } else
+    result = results.get(2);
+
+    return result;
+
+
+  }
+
+  private void resetTest(){
+    isFirstQuestion = true;
+    categoryArray.clear();
+    currentQuestion = question1;
+  }
+
 
   public void addQuestion(Question question) {
     examinationQuestions.put(question.getId(), question);
@@ -323,6 +509,7 @@ public class Examination {
 
   public void createAndAddQuestion(String questionText, Answer... answers) {
 
+
   }
 
   public boolean isFirstQuestion() {
@@ -333,4 +520,7 @@ public class Examination {
   public Question loadCurrentQuestion() {
     return currentQuestion;
   }
+
+
 }
+

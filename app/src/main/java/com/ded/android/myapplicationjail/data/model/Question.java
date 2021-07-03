@@ -11,6 +11,7 @@ public class Question {
   private Question() {
   }
 
+
   public Question(String questionText, Answer... answers) {
     this.questionText = questionText;
     this.id = ++questionId;
@@ -42,4 +43,9 @@ public class Question {
   public ReactionToAnswer[] getReaction() {
     return reaction;
   }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
 }
