@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ded.android.myapplicationjail.MainActivity;
 import com.ded.android.myapplicationjail.R;
 import com.ded.android.myapplicationjail.data.model.Answer;
 import com.ded.android.myapplicationjail.data.model.Question;
@@ -24,17 +25,19 @@ import com.ded.android.myapplicationjail.ui.question.presetner.QuestingPresenter
 import com.google.android.material.button.MaterialButton;
 
 import static com.ded.android.myapplicationjail.data.Examination.FIRST_QUESTION;
+import static com.ded.android.myapplicationjail.data.Examination.MAX_QUESTION_ID;
 
 
 public class QuestionFragment extends Fragment implements QuestionFragmentView {
 
-  QuestingPresenter questingPresenter;
-  TextView tvQuestion;
-  Question currentQuestion;
-  int wrapContent = LinearLayout.LayoutParams.WRAP_CONTENT;
-  LinearLayout llAnswers;
-  LinearLayout.LayoutParams lParams;
-  Button btnNewAnswer;
+  private QuestingPresenter questingPresenter;
+  private TextView tvQuestion;
+  private Question currentQuestion;
+  private int wrapContent = LinearLayout.LayoutParams.WRAP_CONTENT;
+  private LinearLayout llAnswers;
+  private LinearLayout.LayoutParams lParams;
+  private Button btnNewAnswer;
+  private MainActivity mainActivity;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +50,7 @@ public class QuestionFragment extends Fragment implements QuestionFragmentView {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     questingPresenter = new QuestingPresenterImpl(this, requireContext());
+    mainActivity = (MainActivity)getActivity();
 
   }
 
@@ -63,7 +67,6 @@ public class QuestionFragment extends Fragment implements QuestionFragmentView {
 
 
     if (questingPresenter.isFirstQuestion()) {
-
       currentQuestion = questingPresenter.loadNextQuestionByAnswerId(FIRST_QUESTION);
 
       showAnswers(currentQuestion);
@@ -71,7 +74,6 @@ public class QuestionFragment extends Fragment implements QuestionFragmentView {
     }
 
     tvQuestion.setText(currentQuestion.getQuestionText());
-    // Log.d("TAG", "getOnClickDoSomething: " + currentQuestion.getReaction());
 
 
   }
@@ -84,16 +86,10 @@ public class QuestionFragment extends Fragment implements QuestionFragmentView {
       btnNewAnswer.setText(answer.getTextAnswer());
       btnNewAnswer.setId(i);
 
-
-      Log.d("TAG", "showAnswers: " + answer.getTextAnswer());
-      Log.d("TAG", "showAnswers: " + btnNewAnswer.getId());
-
-
       llAnswers.addView(btnNewAnswer, lParams);
 
       btnNewAnswer.setOnClickListener(getOnClickDoSomething(i));
     }
-    Log.d("TAG", "showAnswers: " + btnNewAnswer.getId());
 
 
   }
@@ -103,10 +99,14 @@ public class QuestionFragment extends Fragment implements QuestionFragmentView {
       llAnswers.removeAllViews();
       int answerId = v.getId();
 
-      if (currentQuestion.getId() < 30) {
+      if (currentQuestion.getId() < MAX_QUESTION_ID) {
         loadAndShowQuestion(answerId);
       }
-      else if (currentQuestion.getId() >= 30) {
+      else if (currentQuestion.getId() >= MAX_QUESTION_ID) {
+
+
+       mainActivity.showAd();
+
         Navigation.findNavController(requireView()).navigate(R.id.action_questionFragment_to_resultFragment);
       }
 
@@ -122,7 +122,6 @@ public class QuestionFragment extends Fragment implements QuestionFragmentView {
     tvQuestion.setText(reaction.getReaction() + currentQuestion.getQuestionText());
 
     showAnswers(currentQuestion);
-    Log.d("TAG", "getOnClickDoSomething: " + reaction.getReaction());
 
 
   }

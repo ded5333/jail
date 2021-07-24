@@ -29,14 +29,15 @@ import java.util.Random;
 
 public class ResultFragment extends Fragment implements ResultFragmentView {
 
-    ResultPresenter resultPresenter;
-    Result result;
-    TextView tvResult;
-    TextView tvResultDescription;
-    Button btnNewTest;
-    Button btnExit;
-    TextView tvNick;
-    MainActivity mainActivity;
+  private ResultPresenter resultPresenter;
+  private Result result;
+  private TextView tvResult;
+  private TextView tvResultDescription;
+  private Button btnNewTest;
+  private Button btnExit;
+  private TextView tvNick;
+  private MainActivity mainActivity;
+
 
 
   @Override
@@ -50,7 +51,7 @@ public class ResultFragment extends Fragment implements ResultFragmentView {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    resultPresenter = new ResultPresenterImpl(this);
+    resultPresenter = new ResultPresenterImpl(this,requireContext());
     mainActivity = (MainActivity) getActivity();
 
 
@@ -66,7 +67,7 @@ public class ResultFragment extends Fragment implements ResultFragmentView {
     tvResultDescription = view.findViewById(R.id.tvResultDescription);
     tvNick = view.findViewById(R.id.tvNickName);
     btnNewTest = view.findViewById(R.id.btnNewTest);
-    btnExit= view.findViewById(R.id.btnExit);
+    btnExit = view.findViewById(R.id.btnExit);
     result = resultPresenter.getResult();
 
     tvResult.setText(result.getResult());
@@ -79,6 +80,8 @@ public class ResultFragment extends Fragment implements ResultFragmentView {
     btnNewTest.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+
+        mainActivity.loadInterstitialAd();
         Navigation.findNavController(requireView()).navigate(R.id.action_resultFragment_to_descriptionFragment);
 
       }
@@ -87,7 +90,7 @@ public class ResultFragment extends Fragment implements ResultFragmentView {
     btnExit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-            mainActivity.finishApp();
+        mainActivity.finishApp();
       }
     });
 

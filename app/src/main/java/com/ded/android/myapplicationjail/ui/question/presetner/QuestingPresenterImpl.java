@@ -20,21 +20,19 @@ public class QuestingPresenterImpl implements QuestingPresenter {
   }
 
 
-
   @Override
   public Question loadNextQuestionByAnswerId(int answerId) {
-    if  (FIRST_QUESTION == answerId)
-    return Examination.getInstance().loadCurrentQuestion();
+    if (FIRST_QUESTION == answerId)
+      return Examination.getInstance(context).loadCurrentQuestion();
     else
-    return Examination.getInstance().setCurrentQuestionByAnswerId(answerId);
+      return Examination.getInstance(context).setCurrentQuestionByAnswerId(answerId);
   }
 
   @Override
   public boolean isFirstQuestion() {
 
-    return Examination.getInstance().isFirstQuestion();
+    return Examination.getInstance(context).isFirstQuestion();
   }
-
 
 
 }
