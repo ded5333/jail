@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.ded.android.myapplicationjail.ui.splash.SplashFragment"
+        android:name="com.ded.android.myjail.ui.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/descriptionFragment"
-        android:name="com.ded.android.myapplicationjail.ui.description.DescriptionFragment"
+        android:name="com.ded.android.myjail.ui.description.DescriptionFragment"
         android:label="fragment_description"
         tools:layout="@layout/fragment_description" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/testFragment"
-        android:name="com.ded.android.myapplicationjail.ui.question.view.QuestionFragment"
+        android:name="com.ded.android.myjail.ui.question.view.QuestionFragment"
         android:label="fragment_test"
         tools:layout="@layout/fragment_question" >
         <action
@@ -37,11 +37,23 @@
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
-        android:name="com.ded.android.myapplicationjail.ui.result.view.ResultFragment"
+        android:name="com.ded.android.myjail.ui.result.view.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result" >
         <action
             android:id="@+id/action_resultFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
+        <action
+            android:id="@+id/action_resultFragment_to_helpAnswerFragment"
+            app:destination="@id/helpAnswerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/helpAnswerFragment"
+        android:name="com.ded.android.myjail.ui.no_correct_answer.view.HelpAnswerFragment"
+        android:label="fragment_help_answer"
+        tools:layout="@layout/fragment_help_answer" >
+        <action
+            android:id="@+id/action_helpAnswerFragment_to_descriptionFragment"
             app:destination="@id/descriptionFragment" />
     </fragment>
 </navigation>

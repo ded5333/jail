@@ -1,4 +1,4 @@
-package com.ded.android.myapplicationjail;
+package com.ded.android.myjail;
 
 import android.content.Context;
 

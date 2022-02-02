@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:476885516526:android:469896af0531a311c133ff",
         "android_client_info": {
-          "package_name": "com.ded.android.myapplicationjail"
+          "package_name": "com.ded.android.myjail"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "476885516526-4mafe2n5cv6f4n1as9iudqm2hd2cii3d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.ded.android.myapplicationjail",
+            "package_name": "com.ded.android.myjail",
             "certificate_hash": "eecd0ca05c539c390d6a7447d092bf451d72a90d"
           }
         },
