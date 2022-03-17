@@ -51,7 +51,6 @@ public class ResultFragment extends Fragment implements ResultFragmentView {
 
     resultPresenter = new ResultPresenterImpl(this,requireContext());
     mainActivity = (MainActivity) getActivity();
-    mainActivity.loadInterstitialAd();
 
 
 

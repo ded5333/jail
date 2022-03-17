@@ -7,11 +7,11 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="/Applications/Android Emulator.app/Contents/MacOS/aosp-master-arm64-v8a" />
+            <value value="$USER_HOME$/.android/avd/Pixel_API_29.avd" />
           </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-02-01T09:36:37.157440Z" />
+    <timeTargetWasSelectedWithDropDown value="2022-02-02T19:14:58.145940Z" />
   </component>
 </project>

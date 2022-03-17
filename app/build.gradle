@@ -21,7 +21,7 @@ android {
         applicationId "com.ded.android.myjail"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 8
+        versionCode 9
         versionName "1.0"
 
 

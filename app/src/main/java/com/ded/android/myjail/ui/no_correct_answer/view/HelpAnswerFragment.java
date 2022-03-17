@@ -49,12 +49,7 @@ public class HelpAnswerFragment extends Fragment {
 
     });
 
-    btnExit.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        mainActivity.finishApp();
-      }
-    });
+    btnExit.setOnClickListener(v -> mainActivity.finishApp());
 
 
   }

@@ -19,4 +19,34 @@
 7-Нельзя здавать сокамерников ни смотрящему, ни администрации тюрьме\n
 8-Не жалейте своих продуктов и не отдавайте все, иначе можете стать жлобом или дойной коровой\n
 9-Будьте вежливыми и не ведитесь на провокации</string>
+    <string name="question2">Рассказывай, за что загремел?</string>
+    <string name="question2a">Покупал или продавал?</string>
+    <string name="question3">Сильно били пока ты был под следствием?</string>
+    <string name="question4">Сам кто по жизни?</string>
+    <string name="question4a">\"Вам предлагают купить койку или ждать очередь, вы: \"</string>
+    <string name="question4b">Давай аббревиатуру набьем тебе</string>
+    <string name="question5">Может во что-то рубанем?</string>
+    <string name="question6">На что играть будем?</string>
+    <string name="question7">У нас ведь здесь черная зона, ты же знаешь что это означает?</string>
+    <string name="question8">Я вижу у тебя чаек при себе, а что за чай?</string>
+    <string name="question9">Будь добр, завари чифирку, а то в хате голяк</string>
+    <string name="question10">Дальше что будешь делать?</string>
+    <string name="question11">Сидите пьете чай, а сокамерник идет в туалет, вы:</string>
+    <string name="question12">Ну что, вилкой в глаз или в жопу раз?</string>
+    <string name="question13">Баба есть у тебя?</string>
+    <string name="question14">И как, хорошо с ней было? Мохнатку лизал ей?</string>
+    <string name="question15">Можешь пойти на дальняк, выдавить личинку</string>
+    <string name="question15a">Вы громко разперделись! Не рви жопу, дай примерить!\n</string>
+    <string name="question16">Шары вкатывать будешь?</string>
+    <string name="question17">Лучше сразу признайся, ты не пидераст? Все равно узнаем рано или поздно</string>
+    <string name="question18">А доказывать будешь? В тазик сядешь?</string>
+    <string name="question19">Вас ударил сокамерник, ваши действия:</string>
+    <string name="question20">\"Вы получили передачу и к вам подходит обиженный и просит угостить сигаретой, ваши действия: \"</string>
+    <string name="question21">\"Вы получили передачу и к вам подходит смотрящий, просит уделить на общее, ваши действия: \"</string>
+    <string name="question22">\"Вы обнаружили что пропала шоколадка: \"</string>
+    <string name="question23">Вам становиться известно что сокамерники планируют побег, вы:</string>
+    <string name="question24">Сокамернику принесли телефон, вы:</string>
+    <string name="question25">Сокамерники просят заплатить на свободе за телефон который принесут в камеру, вы:</string>
+    <string name="question26">Вас просят помыть пол в камере, вы:</string>
+    <string name="question15aa">Ну с облегчением тебя, руки хоть помой, а то ведь хер трогал</string>
 </resources>
